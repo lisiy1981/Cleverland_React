@@ -5,11 +5,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      counter: 0,
-      ink: "INK",
-      dec: "DEC",
-      rnd: "RND",
-      reset: "RESET",
+      counter: this.props.counter,
     };
   }
   btnInk = () => {
@@ -37,10 +33,10 @@ class App extends Component {
       <div className="app">
         <div className="counter">{this.state.counter}</div>
         <div className="controls">
-          <button onClick={this.btnInk}>{this.state.ink}</button>
-          <button onClick={this.btnDec}>{this.state.dec}</button>
-          <button onClick={this.btnRnd}>{this.state.rnd}</button>
-          <button onClick={this.btnReset}>{this.state.reset}</button>
+          <button onClick={this.btnInk}>INK</button>
+          <button onClick={this.btnDec}>DEC</button>
+          <button onClick={this.btnRnd}>RND</button>
+          <button onClick={this.btnReset}>RESET</button>
         </div>
       </div>
     );
