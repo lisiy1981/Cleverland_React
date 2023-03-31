@@ -17,11 +17,13 @@ class MarvelService {
   //       "https://gateway.marvel.com:443/v1/public/characters?limit=9&offset=210&apikey=0fe6881ee5195d5e1e316da8631e3a6b"
   //     );
   //   };
-  getAllCharacters = () => {
-    return this.getResurce(
+  getAllCharacters = async () => {
+    const res = await this.getResource(
       `${this._apiBase}characters?limit=9&offset=210&${this._apiKey}`
     );
+    return res.data.results.map(this._transformCharacter);
   };
+
   // getCharacter = (id) => {
   //   return this.getResurce(`${this._apiBase}characters/${id}?${this._apiKey}`);
   // };
