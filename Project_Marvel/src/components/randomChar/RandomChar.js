@@ -135,7 +135,7 @@ const View = ({ char }) => {
   const bigDescription =
     description.length > 209 ? `${description.slice(0, 210)}...` : description;
 
-  const imgBig =
+  let imgBig =
     "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg";
 
   return (
@@ -144,7 +144,7 @@ const View = ({ char }) => {
         src={thumbnail}
         alt="Random character"
         className="randomchar__img"
-        style={{ objectFit: imgBig ? "contain" : "cover" }}
+        style={{ objectFit: thumbnail === imgBig ? "contain" : "cover" }}
       />
       <div className="randomchar__info">
         <p className="randomchar__name">{name}</p>
