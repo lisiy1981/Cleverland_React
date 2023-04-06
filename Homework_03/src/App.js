@@ -4,16 +4,16 @@ import "./App.css";
 const App = (props) => {
   const [counter, setCounter] = useState(props.counter);
 
-  const btnInk = (i) => {
+  const btnInk = () => {
     setCounter(counter < 10 ? counter + 1 : counter);
   };
-  const btnDec = (i) => {
+  const btnDec = () => {
     setCounter(counter > -10 ? counter - 1 : counter);
   };
-  const btnRnd = (i) => {
+  const btnRnd = () => {
     setCounter(+(Math.random() * (10 - -10) + -10).toFixed(0));
   };
-  const btnReset = (i) => {
+  const btnReset = () => {
     setCounter(0);
   };
 
