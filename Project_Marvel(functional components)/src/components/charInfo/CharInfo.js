@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import MarvelService from "../../services/MarvelService";
+import useMarvelService from "../../services/MarvelService";
 import Spinner from "../spinner/Spinner";
 import ErrorMessage from "../errorMessage/ErrorMessage";
 import Skeleton from "../skeleton/Skeleton";
@@ -9,10 +9,8 @@ import "./charInfo.scss";
 
 const CharInfo = (props) => {
   const [char, setChar] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
 
-  const marvelService = new MarvelService();
+  const { loading, error, getCharacter, clearError } = useMarvelService();
 
   useEffect(() => {
     updateChar();
@@ -24,22 +22,12 @@ const CharInfo = (props) => {
       return;
     }
 
-    onCharLoading();
-    marvelService.getCharacter(charId).then(onCharLoaded).catch(onError);
+    clearError();
+    getCharacter(charId).then(onCharLoaded);
   };
 
   const onCharLoaded = (char) => {
-    setLoading(false);
     setChar(char);
-  };
-
-  const onCharLoading = () => {
-    setLoading(true);
-  };
-
-  const onError = () => {
-    setError(true);
-    setLoading(false);
   };
 
   const skeleton = char || loading || error ? null : <Skeleton />;
@@ -89,7 +77,6 @@ const View = ({ char }) => {
       <ul className="char__comics-list">
         {comics.length > 0 ? (
           comics.map((item, i) => {
-            // eslint-disable-next-line array-callback-return
             if (i > 9) return;
             return (
               <li key={i} className="char__comics-item">
