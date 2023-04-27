@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
-import { MainPage, ComicsPage } from "../pages";
+
 import "./appHeader.scss";
 
 const AppHeader = () => {
