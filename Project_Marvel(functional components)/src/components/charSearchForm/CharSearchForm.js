@@ -8,6 +8,15 @@ const CharSearchForm = () => {
   const [char, setChar] = useState(null);
   const { loading, error, getCharacterByName, clearError } = useMarvelService();
 
+  const onCharLoaded = (char) => {
+    setChar(char);
+  };
+
+  const updateChar = (name) => {
+    clearError();
+
+    getCharacterByName(name).then(onCharLoaded);
+  };
   //текст для посещения страницы: There is! Visit {char[0].name} page?
   //текст ошибки: The character was not found. Check the name and try again
 
